@@ -1,0 +1,84 @@
+<!-- Author: Jks Liu(chinatianma@gmail.com) -->
+
+<html>
+  <head>
+    <title>DS18B20 C51 Code AutoGeneration</title>
+    <style>
+      pre code {
+          display: block; padding: 0.5em;
+          color: #333;
+          background: #f8f8ff
+      }
+    </style>
+  </head>
+  
+  <body>
+    <script type='text/javascript' src='ds18b20-c51-code-autogeneration.js'></script>
+    <h1>DS18B20 C51 Code AutoGeneration</h1>
+
+    <h2>ds18b20.h</h2>
+    <pre><code>
+/* **********************************************************************
+ * Author:  Jks Liu(chinatianma@gmail.com)
+ * License: Public Domain
+ * **********************************************************************/
+
+/* **********************************************************************
+ * Conventions used in ds18b20.c and ds18b20.h :
+ *
+ *      The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL
+ *       NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED",  "MAY", and
+ *      "OPTIONAL" in this document are to be interpreted as described in
+ *      [RFC 2119](www.ietf.org/rfc/rfc2119.txt).
+ * **********************************************************************/
+
+/* **********************************************************************
+ * Manual:
+ *
+ * You MUST define macro `DS18B20_DQ' in hardware-config.h 
+ * to indicate how your ds18b20 connects to 51 micro-controller.
+ *
+ * You MUST define these types in your software-config.h 
+ * whih `#define' or `typedef':
+ *    `uint16_t', `bool'
+ * And you SHALL define `true' and `false' in the same file.
+ *
+ * Currently you can only use one ds18b20 on 1 bus.
+ * **********************************************************************/
+ 
+#ifndef DS18B20_H_
+#define DS18B20_H_
+
+
+#include "hardware-config.h"
+#include "software-config.H"
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+/* **********************************************************************
+ * Check if the ds18b20 device is present
+ * 
+ * Return value:
+ *     true:  present
+ *     false: not part
+ * **********************************************************************/
+bool ds18b20_search(void);
+
+/* **********************************************************************
+ * Read data from DS18B20 Temperature Register
+ * **********************************************************************/
+uint16_t ds18b20_get_raw(void);
+
+#ifdef __cplusplus
+}
+#endif
+
+#endif /* DS18B20_H_ */
+    </code></pre>
+
+    <h2>ds18b20.c</h2>
+  </body>
+</html>
