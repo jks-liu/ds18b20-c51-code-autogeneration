@@ -9,6 +9,9 @@
           color: #333;
           background: #f8f8ff
       }
+      label {
+          text-align:right;
+      }
     </style>
   </head>
   
@@ -16,10 +19,15 @@
     <script type='text/javascript' src='ds18b20-c51-code-autogeneration.js'></script>
 
     <p>
-      Time of executing `DJNZ Rn, Address' instruction: 
-      <input id='djnz time ns' size=10 onKeyUp='main()'>
-      ns.
-      <br/>
+      <ul>
+        <li><label>Colck frequence: </label>
+        <input id='colck' size=10 onKeyUp='main()'> MHz. </li>
+        
+        <li><bable>Machine cycle(normal 12): </label>
+         <input id='machine cycle' onKeyUp='main()' />. </li>
+        
+
+      </ul>
       <div id='djnz time ns echo'></div>
     </p>
 
@@ -100,6 +108,8 @@ uint16_t ds18b20_get_raw(void);
 
 NAME DS18B20_C51
 
+EXTERN BIT(DS18B20_DQ)
+
 ; void ds18b20_delay(void)
 ?PR?ds18b20_delay?DS18B20_C51 SEGMENT CODE
 PUBLIC ds18b20_delay
@@ -108,11 +118,22 @@ ds18b20_delay:
     DJNZ R7, $
     RET
 
-; void ds18b20_delay_1ms(void)
+; void ds18b20_delay_1ms(void);
 ?PR?ds18b20_delay_1ms?DS18B20_C51 SEGMENT CODE
 PUBLIC ds18b20_delay_1ms
     RSEG ?PR?ds18b20_delay_1ms?DS18B20_C51
 ds18b20_delay_1ms: <div id='delay_1ms'>REPLACE ME</div>    RET
+
+; void ds18b20_write0_slot(void);
+?PR?ds18b20_write0_slot?DS18B20_C51 SEGMENT CODE
+PUBLIC ds18b20_write0_slot
+    RSEG ?PR?ds18b20_write0_slot?DS18B20_C51
+ds18b20_write0_slot:
+    
+
+; void ds18b20_write1_slot(void);
+
+; bit ds18b20_read_slot(void);
     
     END
     </code></pre>
