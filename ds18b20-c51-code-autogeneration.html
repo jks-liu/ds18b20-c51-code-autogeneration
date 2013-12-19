@@ -91,7 +91,7 @@ uint16_t ds18b20_get_raw(void);
 
     <h2>ds18b20.c</h2>
 
-    <h2>ds18b20_delay.asm</h2>
+    <h2>ds18b20_c51.asm</h2>
     <pre><code>
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; Author: Jks Liu(chinatianma@gmail.com)
@@ -100,21 +100,21 @@ uint16_t ds18b20_get_raw(void);
 
 NAME DS18B20_C51
 
-; void ds18b20_delay(unsigned char)
-?PR?_ds18b20_delay?DS18B20_C51 SEGMENT CODE
-PUBLIC _ds12b20_delay
-_ds18b20_delay:
-    RSEG ?PR?_ds18b20_delay?DS18B20_C51
+; void ds18b20_delay(void)
+?PR?ds18b20_delay?DS18B20_C51 SEGMENT CODE
+PUBLIC ds18b20_delay
+    RSEG ?PR?ds18b20_delay?DS18B20_C51
+ds18b20_delay:
     DJNZ R7, $
     RET
 
-; void ds18b20_delay_1ms(unsigned int)
-?PR?_ds18b20_delay_1ms?DS18B20_C51 SEGMENT CODE
-PUBLIC _ds12b20_delay_1ms
-_ds18b20_delay_1ms:
-    RESG ?PR?_ds18b20_delay_1ms?DS18B20_C51 <div id='delay 1ms'>REPLACE ME</div>
-
-
+; void ds18b20_delay_1ms(void)
+?PR?ds18b20_delay_1ms?DS18B20_C51 SEGMENT CODE
+PUBLIC ds18b20_delay_1ms
+    RSEG ?PR?ds18b20_delay_1ms?DS18B20_C51
+ds18b20_delay_1ms: <div id='delay_1ms'>REPLACE ME</div>    RET
+    
+    END
     </code></pre>
 
     <hr/>
