@@ -14,6 +14,16 @@
   
   <body>
     <script type='text/javascript' src='ds18b20-c51-code-autogeneration.js'></script>
+
+    <p>
+      Time of executing `DJNZ Rn, Address' instruction: 
+      <input id='djnz time ns' size=10 onKeyUp='main()'>
+      ns.
+      <br/>
+      <div id='djnz time ns echo'></div>
+    </p>
+
+
     <h1>DS18B20 C51 Code AutoGeneration</h1>
 
     <h2>ds18b20.h</h2>
@@ -80,5 +90,61 @@ uint16_t ds18b20_get_raw(void);
     </code></pre>
 
     <h2>ds18b20.c</h2>
+
+    <h2>ds18b20_delay.asm</h2>
+    <pre><code>
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+; Author: Jks Liu(chinatianma@gmail.com)
+; License: Public Domain
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+NAME DS18B20_C51
+
+; void ds18b20_delay(unsigned char)
+?PR?_ds18b20_delay?DS18B20_C51 SEGMENT CODE
+PUBLIC _ds12b20_delay
+_ds18b20_delay:
+    RSEG ?PR?_ds18b20_delay?DS18B20_C51
+    DJNZ R7, $
+    RET
+
+; void ds18b20_delay_1ms(unsigned int)
+?PR?_ds18b20_delay_1ms?DS18B20_C51 SEGMENT CODE
+PUBLIC _ds12b20_delay_1ms
+_ds18b20_delay_1ms:
+    RESG ?PR?_ds18b20_delay_1ms?DS18B20_C51 <div id='delay 1ms'>REPLACE ME</div>
+
+
+    </code></pre>
+
+    <hr/>
+
+    <h2>delay.h</h2>
+    <pre><code>
+/* **********************************************************************
+ * Author:  Jks Liu(chinatianma@gmail.com)
+ * License: Public Domain
+ * **********************************************************************/
+
+#ifndef DELAY_H_
+#define DELAY_H_
+
+#ifdef __cplusplus
+extern "C"
+{
+#endif
+
+void ds18b20_delay(unsigned char i);
+void ds18b20_delay_ms(unsigned int i);
+
+#ifdef __cplusplus
+}
+#endif
+
+#define delay(x) ds18b20_delay(x)
+#define delay_ms(x) ds18b20_delay_ms(x)
+
+#endif /* DELAY_H_ */    
+    </code></pre>
   </body>
 </html>
