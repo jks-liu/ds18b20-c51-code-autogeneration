@@ -83,15 +83,17 @@ extern "C"
 bool ds18b20_initialize(void);
 
 /* **********************************************************************
- * Read data from DS18B20 Temperature Register
+ * Convert and read data from DS18B20 Temperature Register
  * 
  * Return value:
  *     true: Successful
  *     false: DS18b20 does not found
  * **********************************************************************/
 bool ds18b20_get_raw(uint16_t *temperature);
-
+bool ds18b28_convert(void);
+bool ds18b20_read_raw(uint16_t *temperature);
 void ds18b20_delay_ms(unsigned int ms);
+#define ds18b20_convert_delay() ds18b20_delay_ms(750)
 
 #ifdef __cplusplus
 }
@@ -146,14 +148,17 @@ static void write_byte(unsigned char b) {
     }
 }
 
-bool ds18b20_get_raw(uint16_t *temperature) {
+bool ds18b28_convert(void) {
     if (ds18b20_reset()) {
         return false;
     }
     write_byte(0xcc);
     write_byte(0x44);
-    ds18b20_delay_ms(750);
-    
+
+    return true;
+}
+
+bool ds18b20_read_raw(uint16_t *temperature) {
     if (ds18b20_reset()) {
         return false;
     }
@@ -161,8 +166,15 @@ bool ds18b20_get_raw(uint16_t *temperature) {
     write_byte(0xbe);
     *temperature = read_byte();
     *temperature += (unsigned int)read_byte() << 8;
-
+    
     return true;
+}
+
+bool ds18b20_get_raw(uint16_t *temperature) {
+    ds18b20_convert();
+    ds18b20_delay_ms(750);
+    return ds18b20_read_raw(temperature);
+
 }    
     </code></pre>
 
