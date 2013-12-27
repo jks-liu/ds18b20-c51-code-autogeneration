@@ -90,7 +90,7 @@ bool ds18b20_initialize(void);
  *     false: DS18b20 does not found
  * **********************************************************************/
 bool ds18b20_get_raw(uint16_t *temperature);
-bool ds18b28_convert(void);
+bool ds18b20_convert(void);
 bool ds18b20_read_raw(uint16_t *temperature);
 void ds18b20_delay_ms(unsigned int ms);
 #define ds18b20_convert_delay() ds18b20_delay_ms(750)
@@ -148,7 +148,7 @@ static void write_byte(unsigned char b) {
     }
 }
 
-bool ds18b28_convert(void) {
+bool ds18b20_convert(void) {
     if (ds18b20_reset()) {
         return false;
     }
